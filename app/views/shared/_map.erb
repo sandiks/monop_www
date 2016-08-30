@@ -1,0 +1,73 @@
+﻿<%
+game = map
+cells = game.cells 
+%>
+<div class="board">
+    <div class="row row1" id="">
+        <% (0..10).each do |c|%>
+        <div class='box <%= (c==0 or c==10) ? "box-c" : "box-x" %>' id='<%="map_c#{c}"%>'>
+            <span class="title blanktitle" id=""> <%= cells[c].name %></span>
+            <div class="runway" ></div>
+            <span class="price"><%= "$#{cells[c].rent}" if cells[c].land?%></span>
+            <% if cells[c].group==1 %>
+            <div class="owner-top" style="background: #b68d4c;"></div>
+            <%elsif cells[c].group==2%>
+            <div class="owner-top" style="background: #87e0fd;"></div>
+            <%end%>
+        </div>
+        <%end%>
+    </div>
+    <div class="row row2">
+        <div class="col1">
+            <% (11..19).each do |c|%>
+            <div class="box box-y" id='<%="map_c#{c}"%>'>
+                <span class="title blanktitle" style=" margin-left: 12px;"> <%= @game.cells[c].name %></span>
+                <div class="runway"></div>
+                <span class="price"><%= "$#{cells[c].rent}" if cells[c].land?%></span>
+                <% if cells[c].group==3 %>
+                <div class="owner-right" style="background: #ad1283;"></div>
+                <%elsif cells[c].group==4 %>
+                <div class="owner-right" style="background: #f79621;"></div>
+                <%end%>
+            </div>
+            <%end%>
+        </div>
+        <div class="col3">
+            <% (31..39).to_a.reverse.each do |c|%>
+            <div class="box box-y" id='<%="map_c#{c}"%>'>
+                <span class="title blanktitle" id=""> <%= @game.cells[c].name %></span>
+                <div class="runway"></div>
+                
+                <span class="price"><%= "$#{cells[c].rent}" if cells[c].land?%></span>
+                <% if cells[c].group==7 %>
+                <div class="owner-left" style="background: green;"></div>
+                <%elsif cells[c].group==8%>
+                <div class="owner-left" style="background: #2c539e;"></div>
+                <%end%>
+            </div>
+            <%end%>
+        </div>
+        
+        <div id='timer' ></div>
+        <div id='plinfo' ></div>
+        <div id='player_buttons' ></div>
+        
+        <div id='logs' >
+        </div>
+        
+    </div>
+    <div class="row row3" id="">
+        <% (20..30).to_a.reverse.each do |c|%>
+        <div class='box <%= (c==20 or c==30) ? "box-c" : "box-x" %>' id='<%="map_c#{c}"%>'>
+            <span class="title blanktitle" style="margin-top: 12px;" > <%= @game.cells[c].name %></span>
+            <div class="runway"></div>
+            <span class="price"><%= "$#{cells[c].rent}" if cells[c].land?%></span>
+            <% if cells[c].group==5 %>
+            <div class="owner-bottom" style="background: red;"></div>
+            <%elsif cells[c].group==6%>
+            <div class="owner-bottom" style="background: #ffff88;"></div>
+            <%end%>
+        </div>
+        <%end%>
+    </div>
+</div>

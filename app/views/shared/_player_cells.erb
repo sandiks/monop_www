@@ -1,0 +1,41 @@
+<% 
+
+g = player_cells
+%>
+<div>
+выберите земли, которые хотите обменять у соперника и у себя, и нажмите "предложить обмен"
+<table style="width: 100%;">
+    <tr>
+       
+        <% for pl in g.players %>
+            <td valign="top">
+               <%= pl.name%>
+                <table cellpadding="0">
+                    <tr>
+                        <td style="padding: 0px;">
+                            <%= pl.money%>
+                        </td>
+                    </tr>
+                    <% for cell in g.map.cells_by_user(pl.id).sort_by{|c| c.group} %>
+                        <tr>
+                            <td style="padding: 0px;">
+                                <input type='checkbox' name='<%= pl.id%>_ids[]' value='<%= cell.id%>'/>
+                                <%= "#{cell.group} #{cell.name} #{cell.mortg? ? 'M': ''}"%>
+                            </td>
+                        </tr>
+                    <% end %>
+                  
+                </table>
+            </td>
+        <% end %>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>
+            <input name="btnTrade" type="button" value="<%= t 'offer exchange' %>" onclick="Trade();" />
+        </td>
+    </tr>
+</table>
+<div id='player_cells_result'></div>
+</div>

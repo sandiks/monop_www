@@ -1,0 +1,151 @@
+<GameTexts>
+  <text key="BuyOrAuc">
+    <en>
+      <![CDATA[
+      <input id="ibBuy" type="button" value="Buy" onclick="action();" />
+      <input id="ibAuc" type="button" value="Auction" onclick="action('a');" />
+    ]]>
+    </en>
+    <ru>
+        <![CDATA[
+      <input id="ibBuy" type="button" value="Купить" onclick="action();" />
+      <input id="ibAuc" type="button" value="Аукцион" onclick="action('a');" />
+    ]]>
+    </ru>
+  </text>
+
+  <text key="ButtonOK">
+    <en>
+      <![CDATA[
+      <input id="ButtonGameOK" type="button" value="ok" onclick="action('ok');" />
+    ]]>
+    </en>
+    <ru>
+        <![CDATA[
+      <input id="ButtonGameOK" type="button" value="ok" onclick="action('ok');" />
+    ]]>
+    </ru>
+  </text>
+
+  <text key="ButtonPay">
+    <en>
+      <![CDATA[
+      <input id="ibPay" type="button" value="Pay" onclick="action('pay');" />
+    ]]>
+    </en>
+    <ru>
+       <![CDATA[
+      <input id="ibPay" type="button" value="Заплатить" onclick="action('pay');" />
+    ]]>
+    </ru>
+  </text>
+
+  <text key="ButtonPoliceUseKey">
+    <en>
+      <![CDATA[
+         <input id="ButtonPolKey" type="button" value="Key" onclick="action('policekey');" />
+    ]]>
+    </en>
+    <ru>
+        <![CDATA[
+         <input id="ButtonPolKey" type="button" value="Использовать ключ" onclick="action('policekey');" />
+    ]]>
+    </ru>
+  </text>
+
+  <text key="HtmlAuction">
+    <en>
+      <![CDATA[
+             Auction cell %s for (%s) <br />
+<table>
+<tr><td>start bid  </td> <td>%d </td></tr>
+<tr><td>last bid  </td> <td>%d </td></tr>
+<tr><td>your bid  </td> <td>%d </td> </tr> 
+<tr><td><input id="btnAucY" type="button" value="yes" onclick="action('y');" />
+<input id="btnAucNo" type="button" value="no" onclick="action('n');" /></td> </tr></table>
+    ]]>
+    </en>
+    <ru>
+       <![CDATA[
+             Аукцион, поле %s игроки (%s) <br />
+<table>
+<tr><td>начальная цена</td> <td>%d </td></tr>
+<tr><td>последняя ставка</td> <td>%d </td></tr>
+<tr><td>ваша ставка</td> <td>%d </td> </tr> 
+<tr><td><input id="btnAucY" type="button" value="Да" onclick="action('y');" />
+<input id="btnAucNo" type="button" value="Нет" onclick="action('n');" /></td> </tr></table>
+    ]]>
+    </ru>
+  </text>
+  <text key="TradeYesNo">
+    <en>
+      <![CDATA[
+<input id="btnY" type="button" value="yes" onclick="action('y');" />
+<input id="btnNo" type="button" value="no" onclick="action('n');" />
+    ]]>
+    </en>
+    <ru>
+        <![CDATA[
+<input id="btnY" type="button" value="Да" onclick="action('y');" />
+<input id="btnNo" type="button" value="Нет" onclick="action('n');" />
+    ]]>
+    </ru>
+  </text>
+  <text key="ButtonRandomMove">
+    <en>
+      <![CDATA[
+      <input id="ButtonRMove" type="button" value="Move" onclick="action('move');" />
+    ]]>
+    </en>
+    <ru><![CDATA[
+      <input id="ButtonRMove" type="button" value="Переместиться" onclick="action('move');" />
+    ]]></ru>
+  </text>
+  <text key="ButtonRoll">
+    <en>
+      <![CDATA[
+        <input id="Button3" type="button" value="Roll" onclick="roll(0);" />
+    ]]>
+    </en>
+    <ru>
+        <![CDATA[
+        <input id="Button3" type="button" value="Бросить кубики" onclick="roll(0);" />
+    ]]>
+    </ru>
+  </text>
+
+  <text key="PartManualRoll">
+    <en>
+      <![CDATA[
+        <table style="width: 100%;">
+          <tr>
+              <td>
+                  <input type="image" src="/game/images/r1.png" onclick="roll(1);">
+                  <input type="image" src="/game/images/r2.png" onclick="roll(2);">
+                  <input type="image" src="/game/images/r3.png" onclick="roll(3);">
+                  <input type="image" src="/game/images/r4.png" onclick="roll(4);">
+                  <input type="image" src="/game/images/r5.png" onclick="roll(5);">
+                  <input type="image" src="/game/images/r6.png" onclick="roll(6);">
+              </td>
+          </tr>
+          </table>
+    ]]>
+    </en>
+    <ru>
+        <![CDATA[
+        <table style="width: 100%;">
+          <tr>
+              <td>
+                  <input type="image" src="/game/images/r1.png" onclick="roll(1);">
+                  <input type="image" src="/game/images/r2.png" onclick="roll(2);">
+                  <input type="image" src="/game/images/r3.png" onclick="roll(3);">
+                  <input type="image" src="/game/images/r4.png" onclick="roll(4);">
+                  <input type="image" src="/game/images/r5.png" onclick="roll(5);">
+                  <input type="image" src="/game/images/r6.png" onclick="roll(6);">
+              </td>
+          </tr>
+          </table>
+    ]]>
+    </ru>
+  </text>
+</GameTexts>

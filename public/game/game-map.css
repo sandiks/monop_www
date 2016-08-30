@@ -1,0 +1,191 @@
+﻿/*******************************
+Elements
+********************************/
+span{
+    display: block;
+    font: bold 10px "Arial", "Helvetica", sans-serif;
+    color: #000;
+    text-align: center;
+}
+/*******************************
+Board Structure
+********************************/
+.board {
+    background: #EBEBE0;
+    width: 880px;
+    margin-top: 20px;
+}
+.row{
+    background: #fff;  
+    float: left;
+    margin-bottom: 2px;
+}
+.row1, .row3 {
+    height: 82px;
+    width: 900px;
+}
+.row2 {
+    width: 888px;
+    height: 575px;
+}
+.col1{
+    float: right;
+    margin-right: 2px;
+    width: 80px;
+}
+.col3{
+    float: left;
+    width: 80px;
+}
+#timer {
+    float: left;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+#plinfo {
+    float: left;
+    margin-left: 40px;
+    margin-top: 60px;
+    width: 300px;
+}
+
+#player_buttons {
+    float: left;
+    margin-left: 40px;
+    margin-top: 90px;
+    width: 300px;
+}
+
+#logs{
+    float: right;
+    margin-right: 20px;
+    width: 330px;
+}
+
+/*******************************
+Board positions - Box
+********************************/
+.box {
+    background: #fff;
+    border: 1px solid #000;
+    float: left;
+    height: 80px;
+    width: 75px;
+    position: relative;
+}
+
+.box-x{
+    margin-right: 2px;
+    height: 80px;
+}
+.box-y{
+    margin-bottom: 2px;
+    height: 60px;
+    width: 90px;
+}
+
+.box-c{
+    margin-right: 2px;
+    width: 90px;
+    height: 80px;
+}
+
+/*******************************
+Board positions - Title
+********************************/
+.title{
+    background: black;
+    border-bottom: 1px solid #000;
+    line-height: 16px;
+}
+.blanktitle{
+    background: none;
+    border-color: #fff;
+
+}
+#pink{
+    background: #ff4f72;
+}
+/*******************************
+Board positions - Runway
+********************************/
+.runway{
+    height: 16px;
+    margin: 0px 0 18px 14px;
+    position: absolute;
+    width: 40px;
+    bottom: 0;
+}
+.piece{
+    background-image:url('../img/piece2.png');
+    float: left;
+    height:12px;
+    margin-left: 2px;
+    width: 12px;
+}
+/*******************************
+Board positions - Body
+********************************/
+.cardbody{
+    background: beige;
+    height:32px;
+}
+.icons{
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto 0 auto;
+}
+#airport{
+
+}
+#chest{
+
+}
+
+/*******************************
+Board positions - Price
+********************************/
+.price{
+    line-height: 12px;
+    margin: 2px 0 2px 0;
+    text-align: center;
+    vertical-align: bottom;
+    width: 100%;
+}
+
+/*******************************
+Board positions - owner
+********************************/
+.owner-top {
+    position: absolute;
+    height: 12px;
+    bottom: 0;
+    width: 100%;
+    
+}
+.owner-right {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    width: 12px;
+    background: green;
+    bottom: 0;
+}
+.owner-left {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    width: 12px;
+    background: green;
+    bottom: 0;
+}
+
+.owner-bottom {
+    position: absolute;
+    height: 12px;
+    width: 100%;
+    top: 0;
+    background: green;
+}

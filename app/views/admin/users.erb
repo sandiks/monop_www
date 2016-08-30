@@ -1,0 +1,9 @@
+<ul>
+users
+<% for user in @users %>
+<li>
+	<%= user[:name] %> created at:<%= user[:created] %>
+	<%= link_to "del", url_for(:admin, :user_del, :id=> user[:name]) %>
+</li>
+<% end %>
+</ul>

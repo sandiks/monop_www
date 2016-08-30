@@ -1,0 +1,23 @@
+<a href="/admin/clear_logs">clear</a>
+<br/>
+<br/>
+<table class="forumTable">
+	<tbody>
+		<tr>
+			<th style="width:5%">ip</th>
+			<th style="width:15%">path</th>
+			<th style="width:35%">uagent</th>
+			<th style="width:15%">referer</th>
+			<th style="width:5%">date</th>
+		</tr>
+		<% @logs.each do |log| %>
+		<tr>
+			<td ><%= log[:ip] %></td>
+			<td ><%= log[:path] %></td>
+			<td ><%= log[:uagent] %></td>
+			<td ><%= log[:referer] %></td>
+			<td ><%= log[:date].strftime("%k:%M %F") %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

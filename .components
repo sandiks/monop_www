@@ -1,0 +1,10 @@
+---
+:orm: sequel
+:test: none
+:mock: none
+:script: none
+:renderer: erb
+:stylesheet: none
+:namespace: Monopwww
+:migration_format: number
+:admin_renderer: erb

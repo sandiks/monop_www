@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<link href="/stylesheets/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery-ui.min.js"></script>
+		<link href="/game/game-map.css" rel="stylesheet" type="text/css" />
+		<script src="/game/game.js" type="text/javascript"></script>
+		<script src="/game/player-cells.js" type="text/javascript"></script>
+
+		<script type="text/javascript">
+         var cells = <%= @info.to_json.html_safe%>;
+         var plrs = <%= @players.to_json.html_safe%>;
+         var pcolors = <%= @player_colors.to_json.html_safe %>;
+         var pimages = <%= @player_images.to_json.html_safe %>;
+         var pl_pos=[0,0,0,0];
+         //var cinfo = $.parseJSON(cells);
+         
+         	function update_page() {
+					$.get("/game/view_update",
+						function(data) {
+							UpdatePage(data);
+					});
+			}
+
+			function show_info(text) {
+				$("#cell_info").append("<br />"+text);
+			}
+			
+			$(document).ready(function() {
+				//$( document ).tooltip();
+
+				var updater = setInterval('update_page()', 3000);
+
+				$("#dialog").dialog({
+					modal: true,
+					autoOpen: false,
+					height: 370,
+					show: {
+						effect: "fade",
+						duration: 300
+					},
+					hide: {
+					    effect: "fade",
+					    duration: 300
+					},
+					buttons: {
+						Ok: function() {
+							$(this).dialog("close");
+						}
+					}
+				});
+
+				$('div[id^="map_"]').click(function(ev) {
+					cid = parseInt(this.id.replace('map_c', ''));
+					cell = cells[cid];
+					var content = '';
+					var mpid = $('#my_pid').val();
+					params = mpid+","+cid
+
+					var buttons_build_sell = '<br /><input name="" type="button" value="построить дом" onclick="Build(' + params + ');show_info(\'вы построили дом\');" />' +
+						'<input name="" type="button" value="продать дом" onclick="Sell(' + params + ');show_info(\'вы продали дом\');" />';
+
+					var buttons_mortg_unmortg = '<br /><input name="" type="button" value="заложить" onclick="Mortgage(' + params + ');show_info(\'вы заложили землю банку\');" />' +
+						'<input name="" type="button" value="выкупить" onclick="Unmortgage(' + params + ');show_info(\'вы выкупили землю\');" />';
+
+					cid_owner = parseInt($(this).attr("data-owner"));
+					curr_rent= $(this).attr("data-rent");
+					hh= $(this).attr("data-houses");
+					
+					var cell_info = '';
+					if (cell.type == 1){ 
+						cell_info ='текущая рента: ' + curr_rent + ' домов: '+ hh + 
+						'<br /> владелец: ' + plrs[cid_owner]+
+						'<br />------------------------------------------'
+					}
+
+					if (cell.type == 1) {
+						var rent = cell.rent.split(";");
+						own_count= parseInt($(this).attr("data-grcount"));
+						show_houses_buttons = own_count ==3 ||(cid ==1 &&own_count ==2)||(cid ==3 &&own_count ==2)||(cid ==37 &&own_count ==2)||(cid ==39 &&own_count ==2);
+
+						content = cell_info +
+						"<br /> стоим. земли: " + cell.price+ 
+						"<br /> доход от заклада: " + cell.price/2 + 
+						"<br /> стоимость выкупа: " + Math.floor(cell.price*0.55)  + 
+						"<br /> рента: " + rent[0] + 
+						"<br />  с 1 домом: " + rent[1] + 
+						"<br />  с 2 домами: " + rent[2] + 
+						"<br />  с 3 домами: " + rent[3] + 
+						"<br />  с 4 домами: " + rent[4] + 
+						"<br />  с отелем: " + rent[5] + 
+						"<br />  стоим. 1 дома: " + cell.hcost +
+							(cid_owner == mpid ? buttons_mortg_unmortg + (show_houses_buttons? buttons_build_sell:'') : '') +
+						"<br /> <div id=cell_info></div>"
+
+					} else if (cell.type == 2 || cell.type == 3) {
+						content = "земля: " + cell.title + 
+						cell_info+
+						"<br /> стоим. земли: " + cell.price + 
+						"<br />описание:" + cell.descr + 
+						(cid_owner == mpid ? buttons_mortg_unmortg : '')+
+						"<br /> <div id=cell_info></div>"
+					} else {
+						content = "земля: " + cell.title + "<br />описание:" + cell.descr 
+					}
+
+					$("#dialog").dialog( "option", "title", "земля: " + cell.title);
+					$("#dialog").dialog( "option", "width", 360 );
+					$("#dialog").html(content);
+					$("#dialog").dialog("open");
+				});
+
+				$('#btnExchange').click(function() {
+					  $.get("/game/player_cells",
+				        function(data) {
+				        	$("#dialog").html(data.player_cells);
+				        });
+					$("#dialog").dialog( "option", "title", 'обмен землями' );
+					$("#dialog").dialog( "option", "width", 560 );
+					$("#dialog").dialog("open");
+				});
+				$('#btnCommands').click(function() {
+					  $.get("/game/run_command", { cmd: $('#game_cmd').val() },
+				        function(data) {
+				        	
+				        });
+				});
+
+			});
+		
+    </script>		
+	</head>
+	<body>
+	<a href="/site">Главная</a>
+	<a href="/site/games">Игры</a>
+	<div id="dialog" title="Информация"></div>
+	<% if logged_in? and current_user[:name] == 'kilk' %>
+		<div id="dlg_commands" title="execute game commands">
+			<input id="game_cmd" type="text">
+		 	<input id="btnCommands" type="button" value="commands" />
+		</div>
+ 	<% end %>
+	<input type="hidden" id="my_pid" value="<%= @mypid %>" />
+	
+	<%= partial 'shared/map', :object => @game %>
+
+	</body>
+</html>

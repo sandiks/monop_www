@@ -1,0 +1,7 @@
+<div class="tabs-content">
+	<% form_tag  url(:site, :new_game)  do  %>
+		player name : <%= text_field_tag :name %>
+		<br />
+		<%= submit_tag "create game" %>
+	<% end %>
+</div>

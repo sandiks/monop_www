@@ -1,0 +1,32 @@
+<script>
+	$(function(){
+		$('#dlg_commands').hide();
+		$('#btnCommands').click(function() {
+					  $.get("/game/run_command", { cmd: $('#game_cmd').val() },
+				        function(data) {
+				        	
+				        });
+				});
+	});
+</script>
+
+<div>
+	<input id="game_cmd" type="text">
+	<button id="btnCommands" class="btn btn-primary" >run command</button>
+</div>
+<span style="float:left;" onclick="$(this).next().toggle();">show commands</span>
+<div  id="dlg_commands" >
+	<ul>
+		<li>set-pos;0;10</li>
+		<li>set-money;0;30000</li>
+		<li>set-cell;pid;39</li>
+		<li>show-ok</li>
+		<li>begin</li>
+		<li>step</li>
+		<li>auto</li>
+		<li>police</li>
+		<li>info</li>
+		<li>init-text</li>
+		<li>init-random</li>
+	</ul>
+</div>

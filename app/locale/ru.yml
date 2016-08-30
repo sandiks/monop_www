@@ -1,0 +1,33 @@
+ru:
+   manage_cells: "управление имуществом"
+   create_new_game: 'создать новую игру'
+   gen_games_list: 'генерировать 20 игр'
+   mortage: заложить
+   unmortage: выкупить
+   trade: торговаться
+   build: построить домики
+   sell_houses: продать домики
+   my games: мои игры
+   join: присоединиться
+   play: играть
+   view: смотреть
+   enter: войти
+   password: пароль
+   login: войти
+   name: имя
+   signin: зарегистрироваться
+   logout: выйти
+   Logged in: вы на сайте
+   players: игроки
+   game_list: список игр
+   exchange: сделка
+   offer exchange: предложить обмен
+   make exchange: провести обмен
+   add bot: добавить игрока
+   change roll mode: тип броска
+   home: главная
+   games: игры
+   manual roll: ручной
+   random roll: случайный
+   create: create
+   

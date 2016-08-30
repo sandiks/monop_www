@@ -1,0 +1,91 @@
+<% content_for :headcontent do%>
+<script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.next').click(function (ev) {
+                var r = parseInt($('#rid').val());
+                var max = parseInt($('#max_r').val());
+                r++;
+                if (r > max) r = max;
+                $('#rid').val(r);
+                Load(r);
+            });
+
+            $('.prev').click(function (ev) {
+                var r = parseInt($('#rid').val());
+                r--;
+                if (r < 0) r =0;
+                $('#rid').val(r);
+                Load(r);
+            });
+
+            Load(0);
+        });
+
+
+       function Load(r) {
+
+        $.get("/sim/round/"+r,
+               function (data) {
+                   UpdatePage(data);
+               });
+       }
+       function UpdatePage(data) {
+          $.each(data.Map, function (i, item) {
+               $('#map_c' + item.id).html(item.text).css('backgroundColor', item.color);
+           });
+
+           $.each(data.Players, function (i, item) {
+               $('#map_c' + item.id).html(item.images);
+           });
+
+           $("#log").html(data.GameLog);
+       }
+       function UpdatePage2(data) {
+
+           $.each(data.Map, function (i, item) {
+               $('#map_c' + item.id).html(item.text).css('backgroundColor', item.color);
+           });
+
+           $.each(data.Players, function (i, item) {
+               $('#map_c' + item.id).html(item.images);
+           });
+   
+           //$("#plstate").html(data.PlayersState);
+           //$("#log").html(data.GameLog);
+       }
+    </script>
+<% end %>
+
+
+<table style="width: 100%;">
+    <tr>
+        <td style="width: 50%; vertical-align: top;">
+            <input id="max_r" type="hidden" value="122" />
+            <button onclick="location.href='sim?act=sim'">
+                Simulate</button>
+            <div>
+                <%= @logs.html_safe %>
+
+            </div>
+        </td>
+        <td style="vertical-align: top;">
+
+            <div>
+                <input id="Button1" class="prev" type="button" value="prev" />
+                <input id="rid" type="text" value="0" />
+                <input id="Button2" class="next" type="button" value="next" />
+
+            </div>
+            <div style="margin-bottom: 15px;">
+                <div id="plstate"></div>
+                <div id="log"></div>
+            </div>
+            <%= partial 'shared/map' %>
+
+        </td>
+    </tr>
+
+</table>
+
+
