@@ -16,7 +16,9 @@ gem 'rake'
 # Component requirements
 gem 'bcrypt'
 gem 'erubis', '~> 2.7.0'
-gem 'pg'
+#gem 'pg'
+gem 'mysql2'
+
 gem 'sequel'
 
 # Test requirements
