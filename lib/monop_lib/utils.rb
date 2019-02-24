@@ -11,11 +11,7 @@ module GameUtil
   end
 
 end
-class GLog
 
-
-
-end
 class FileUtil
   def self.init_game_messages(g)
     g.mtext =
@@ -46,7 +42,7 @@ class FileUtil
       "_mortgage" => ["mortgage" , "вы заложили участок"],
       "_unmortgage" => ["unmortgage" , "вы выкупили участок"],
       "_sold_houses" => ["sold houses" , "вы продали дома"],
-      "_stayed_on_start" =>["you stayed on start, take $2000", "вы попали на старт и получили откат $2000"],
+      "_stayed_on_start" =>["%s stayed on start, take $2000", "%s попал на старт и получили откат $2000"],
       "_trade_completed" => ["trade completed between %s and %s, give %s get %s", "обмен состоялся между %s и %s, предлагал %s, получил %s"],
       "_trade_not_completed" => ["trade failed between %s and %s, give %s get %s", "обмен провалился между %s и %s, предлагал %s, хотел получить %s"],
       "_tripple_roll" => ["_tripple_roll" , "вы выкинули три дупля подряд и перемещаетесь в камеру"],

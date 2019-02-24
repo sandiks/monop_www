@@ -44,9 +44,9 @@ module  GameUI
     #puts "#{g.state} process_command: #{cmd}"
     #GameManager.update_game(g) if g.curr.isbot
 
-    cmd.sub!('game','') if !cmd.nil? && cmd.start_with?('game')
+    cmd.sub!('game','') if cmd && cmd.start_with?('game')
     cmd.strip!
-    p "state #{g.state} command=#{cmd}"
+    p "--state #{g.state} --command #{cmd}"
 
     case g.state
     when :BeginStep;
@@ -59,8 +59,6 @@ module  GameUI
       if g.curr?(uname) && cmd.start_with?('pay')
         g.pay_amount = 500
         PlayerManager.pay(g, false)
-        g.curr.police=0
-        g.log g.l "вы заплатили $500 и выходите из тюрьмы", "you paid $500 and can roll"
         return
       end
 
@@ -84,15 +82,6 @@ module  GameUI
       puts g.state
     end
 
-  end
-
-  def self.start_roll_when_police(g,cmd,uanme)
-    if cmd.start_with?('pay')
-      g.pay_amount = 500
-      PlayerManager.pay(g, false)
-      g.curr.police=0
-
-    end
   end
 
   def self.get_money(g,cmd)

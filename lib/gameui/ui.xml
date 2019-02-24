@@ -2,14 +2,15 @@
   <text key="BuyOrAuc">
     <en>
       <![CDATA[
-      <input id="ibBuy" type="button" value="Buy" onclick="action();" />
+      <input id="ibBuy" class="btn_style_red" type="button" value="Buy" onclick="action();" />
       <input id="ibAuc" type="button" value="Auction" onclick="action('a');" />
     ]]>
     </en>
     <ru>
         <![CDATA[
-      <input id="ibBuy" type="button" value="Купить" onclick="action();" />
-      <input id="ibAuc" type="button" value="Аукцион" onclick="action('a');" />
+
+      <input id="ibBuy" class="btn_style_red" type="button" value="Купить" onclick="action();" />
+      <input id="ibAuc" class="btn_style_red" type="button" value="Аукцион" onclick="action('a');" />
     ]]>
     </ru>
   </text>
@@ -17,12 +18,12 @@
   <text key="ButtonOK">
     <en>
       <![CDATA[
-      <input id="ButtonGameOK" type="button" value="ok" onclick="action('ok');" />
+      <input id="ButtonGameOK" class="btn_style_blue" type="button" value="finish round" onclick="action('ok');" />
     ]]>
     </en>
     <ru>
         <![CDATA[
-      <input id="ButtonGameOK" type="button" value="ok" onclick="action('ok');" />
+      <input id="ButtonGameOK" class="btn_style_blue" type="button" value="закончить раунд" onclick="action('ok');" />
     ]]>
     </ru>
   </text>
@@ -30,12 +31,12 @@
   <text key="ButtonPay">
     <en>
       <![CDATA[
-      <input id="ibPay" type="button" value="Pay" onclick="action('pay');" />
+      <input id="ibPay" class="btn_style_red" type="button" value="Pay" onclick="action('pay');" />
     ]]>
     </en>
     <ru>
        <![CDATA[
-      <input id="ibPay" type="button" value="Заплатить" onclick="action('pay');" />
+      <input id="ibPay" class="btn_style_red" type="button" value="Заплатить" onclick="action('pay');" />
     ]]>
     </ru>
   </text>
@@ -61,8 +62,8 @@
 <tr><td>start bid  </td> <td>%d </td></tr>
 <tr><td>last bid  </td> <td>%d </td></tr>
 <tr><td>your bid  </td> <td>%d </td> </tr> 
-<tr><td><input id="btnAucY" type="button" value="yes" onclick="action('y');" />
-<input id="btnAucNo" type="button" value="no" onclick="action('n');" /></td> </tr></table>
+<tr><td><input id="btnAucY" class="btn_style_red" type="button" value="yes" onclick="action('y');" />
+<input id="btnAucNo" class="btn_style_red" type="button" value="no" onclick="action('n');" /></td> </tr></table>
     ]]>
     </en>
     <ru>
@@ -72,22 +73,22 @@
 <tr><td>начальная цена</td> <td>%d </td></tr>
 <tr><td>последняя ставка</td> <td>%d </td></tr>
 <tr><td>ваша ставка</td> <td>%d </td> </tr> 
-<tr><td><input id="btnAucY" type="button" value="Да" onclick="action('y');" />
-<input id="btnAucNo" type="button" value="Нет" onclick="action('n');" /></td> </tr></table>
+<tr><td><input id="btnAucY" class="btn_style_red" type="button" value="Да" onclick="action('y');" />
+<input id="btnAucNo" class="btn_style_red" type="button" value="Нет" onclick="action('n');" /></td> </tr></table>
     ]]>
     </ru>
   </text>
   <text key="TradeYesNo">
     <en>
       <![CDATA[
-<input id="btnY" type="button" value="yes" onclick="action('y');" />
-<input id="btnNo" type="button" value="no" onclick="action('n');" />
+<input id="btnY" class="btn_style_red" type="button" value="yes" onclick="action('y');" />
+<input id="btnNo" class="btn_style_red" type="button" value="no" onclick="action('n');" />
     ]]>
     </en>
     <ru>
         <![CDATA[
-<input id="btnY" type="button" value="Да" onclick="action('y');" />
-<input id="btnNo" type="button" value="Нет" onclick="action('n');" />
+<input id="btnY" class="btn_style_red" type="button" value="Да" onclick="action('y');" />
+<input id="btnNo" class="btn_style_red" type="button" value="Нет" onclick="action('n');" />
     ]]>
     </ru>
   </text>
@@ -104,12 +105,12 @@
   <text key="ButtonRoll">
     <en>
       <![CDATA[
-        <input id="Button3" type="button" value="Roll" onclick="roll(0);" />
+        <input id="Button3" class="btn_style_blue" type="button" value="Roll" onclick="roll(0);" />
     ]]>
     </en>
     <ru>
         <![CDATA[
-        <input id="Button3" type="button" value="Бросить кубики" onclick="roll(0);" />
+        <input id="Button3" class="btn_style_blue" type="button" value="Бросить кубики" onclick="roll(0);" />
     ]]>
     </ru>
   </text>

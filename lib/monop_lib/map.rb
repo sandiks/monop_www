@@ -55,7 +55,6 @@ class Map
     def update_map
       groups = g.cells.select {|c| c.land? && c.owner }
       .group_by{ |c| [c.group, c.owner] }
-      .map {|k,v| [k, v]}
 
       groups.each do |gr|
           gr[1].each{|c| c.owgrcount = gr[1].size}

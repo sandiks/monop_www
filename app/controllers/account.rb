@@ -10,8 +10,7 @@ Monopwww::App.controllers :account do
     end
     post :create do
         name =params[:name]
-        users = Monopwww::App.cache['site_users']
-        users = [] if users.nil?
+        users = Monopwww::App.cache['site_users'] || []
         if !users.any? {|u| u[:name] == name}
             users<< {name: name, pass:params[:password], created: DateTime.now.new_offset(3/24.0)}
             Monopwww::App.cache['site_users'] = users

@@ -17,21 +17,17 @@ gem 'rake'
 gem 'bcrypt'
 gem 'erubis', '~> 2.7.0'
 #gem 'pg'
-gem 'mysql2'
-
+#gem 'mysql2'
+gem 'sqlite3'
 gem 'sequel'
 
 # Test requirements
 
 # Padrino Stable Gem
-gem 'padrino'
+gem 'padrino', '0.14.4'
 gem 'json'
-gem 'nokogiri'
 gem 'redis'
-gem 'sidekiq'
 gem 'padrino-warden', :github => 'jondot/padrino-warden'
-gem 'em-websocket'
-gem 'em-hiredis'
 gem 'logger'
 
 #gem 'i18n'

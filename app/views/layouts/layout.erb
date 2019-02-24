@@ -7,83 +7,53 @@
         <meta name='description' content='monopoly -  best online game , enjoy' />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
-        <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="/stylesheets/bootswatch.css" rel="stylesheet" >
-        <link href="/stylesheets/bootstrap-theme.min.css" rel="stylesheet">
-
-        <link href="/stylesheets/demo.css" rel="stylesheet">
-        <link href="/stylesheets/yamm.css" rel="stylesheet">
-
-        <link href="/stylesheets/jquery-ui.min.css" rel="stylesheet" />
-
+        <!--[if lt IE 9]>
+            <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="/stylesheets/actualforum2.css" media="screen" />
+        <link href="/stylesheets/jquery-ui.min.css" rel="stylesheet" type="text/css" />
         <script src="/javascripts/jquery.min.js"></script>
         <script type="text/javascript" src="/javascripts/jquery-ui.min.js"></script>
-        <script src="/game/chat.js" type="text/javascript"></script>
-	
-		<script type="text/javascript">
-		        $(document).ready(function () {
-		        	$('#chatModal').hide();
-		        	$('#chatSwitcher').click(function (e) {
-						  e.preventDefault()
-						  $('#chatModal').toggle();
-					});
-
-		        });
-		   
-		</script>        
-        <%= yield_content :headcontent %>
+        
+         <%= yield_content :headcontent %>
         
     </head>
     <body>
-        <div class="navbar yamm navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a href="#" class="navbar-brand">Ситиполия</a>
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                    </button>
+       
+        <div style="margin-left:20px;">
+            <div id="header">
+                <div id="title">
+                    <h1>Ситиполия, управляй городами</h1>
                 </div>
-                <div class="navbar-collapse collapse" id="navbar-main">
-                    <ul class="nav navbar-nav">
-                        
-                        <li <%= request.route_obj.action.to_s == 'index' ? 'class=active' : '' %> ><a href="/site"><%= t 'home' %></a></li>
-                        <li <%= request.route_obj.action.to_s == 'games' ? 'class=active' : '' %>><a href="/site/games"><%= t 'games' %></a></li>
-                      
-                        <li>
-                            <a href="/blog/index.html">блог</a>
-                        </li>
- 
-                     	<li id="chatSwitcher" class="dropdown"><a href="#" class="dropdown-toggle">чат<b class="caret"></b></a>
-                      
-                    	</li>                             
+                <div id="logindisplay">
+                   <% if logged_in? %>
+                      <%= " #{t 'Logged in'}:  #{current_user[:name]}" %>
 
-                    </ul>
-                    <div class="navbar-right">
-                        <% if logged_in? %>
-                        <input type="hidden" id="logged_uname" value="<%= current_user[:name] %>" >
-                        <%= " #{t 'Logged in'}:  #{current_user[:name]}" %>
-                        <% if current_user[:name] == 'kilk' %>
+                      <% if current_user[:name] == 'kilk' %>
                         <a href="/admin">admin</a>
                         <a href="/admin/logs">logs</a>
-                        <% end %>
-                        <a href="/sessions/logout"><%= "#{t "logout"}" %></a>
-                        <% else %>
-                        <a href="/sessions/login"><%= "#{t "login"}" %> </a>
-                        <% end %>
-                        <% lang = I18n.locale == :en ? 'ru': 'en' %>
-                        <a href="/site/lang/<%= lang %>"><%= lang %></a>
-                    </div>
+                      <% end %>
+
+                      <a href="/sessions/logout"><%= "#{t "logout"}" %></a>
+
+                   <% else %>
+                     <a href="/sessions/login"><%= "#{t "login"}" %> </a>
+                   <% end %>
+                   <% lang = I18n.locale == :en ? 'ru': 'en' %>
+                   <a href="/site/lang/<%= lang %>"><%= lang %></a>
+                </div>
+                <div id="menucontainer">
+                    <ul id="menu">
+                        <li <%= request.route_obj.action.to_s == 'index' ? 'class=selected' : '' %> ><a href="/site"><%= t 'home' %></a></li>
+                        <li <%= request.route_obj.action.to_s == 'games' ? 'class=selected' : '' %>><a href="/site/games"><%= t 'games' %></a></li>
+                       
+                    </ul>
                 </div>
             </div>
+            <div id="main">
+                <%= yield %>
+               
+            </div>
         </div>
-
-        <div id="chatModal" class="yamm-content">
-            <%= partial 'shared/chat', :object => SiteHelper.chat_messages %>
-
-        </div>
-        <div class="container">
-            
-            <%= yield %>
-        </div>
-        <script src="/javascripts/bootstrap.js"></script>
     </body>
 </html>

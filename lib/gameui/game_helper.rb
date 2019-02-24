@@ -34,6 +34,7 @@ module GameHelper
   end
 
   def self.show_begin_round(g,uname)
+    
     text =''
     if  g.is_manual_roll_mode
       my_player = g.find_player_by(uname)
@@ -59,7 +60,7 @@ module GameHelper
       end
     end
 
-    "<br />[#{g.state}, #{g.round}] ходит #{g.curr.name}, "+text
+    "<br />[раунд #{g.round}] ходит #{g.curr.name}, "+text
 
   end
 
@@ -72,7 +73,7 @@ module GameHelper
   end
   def self.show_endround_ok(g,uname)
     if g.curr?(uname) || g.curr.isbot
-      " <br /><br /> закончить ход "+ html_text('ButtonOK')
+      " <br /><br />"+ html_text('ButtonOK')
     else
       ""
     end
@@ -109,6 +110,7 @@ module GameHelper
   end
 
   def self.html_text(key)
+ 
     doc = Nokogiri::XML(File.open(Padrino.root('/lib/gameui/ui.xml')))
     doc.css('text').each do |node|
       return node.css('ru').text.strip if node.attr('key') == key

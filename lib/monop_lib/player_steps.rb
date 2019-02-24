@@ -5,7 +5,7 @@ require_relative  "bot/bb_trade"
 
 class PlayerStep
 
-  def self.make_step(g, r=nil)
+  def self.make_step(g, defined_r=nil)
 
     return if g.curr.isbot && GameManager.bot_actions_before_roll(g)
 
@@ -21,10 +21,10 @@ class PlayerStep
     else
       rr = [rand(6)+1,rand(6)+1]
       #rr = [1,2]
-      rr[0] = r if not r.nil?
+      rr[0] = defined_r if defined_r
     end
 
-    make_step_roll(g,rr[0],rr[1])
+    make_step_roll(g, rr[0], rr[1])
 
   end
 
@@ -50,6 +50,7 @@ class PlayerStep
       process_position(g)
 
     elsif result =='pay500_go'
+      
     else
       g.finish_step(result)
     end

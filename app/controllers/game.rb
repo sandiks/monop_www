@@ -57,7 +57,7 @@ Monopwww::App.controllers :game do
 
     exist = g.players.any?{|pl| pl.name == logged_uname}
 
-    if not exist
+    if g.players.size<4 && !exist
       g.add_player(logged_uname,0)
     end
 

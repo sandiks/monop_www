@@ -7,7 +7,7 @@ def init_game
   g = Game.new(File.dirname(__FILE__))
   g.log_to_console = true
 
-  g.add_player("human",1)
+  g.add_player("comp",1)
   g.add_player("fedor(b)",1)
 
   g.start
@@ -23,7 +23,7 @@ def  test_make_step_on_manual_mode
   g.check_roll_and_make_step
   p g.logs
 end
-#test_make_step_on_manual_mode
+
 
 def  test_auction
   g = init_game
@@ -43,11 +43,7 @@ def  test_random
   #random = g.map.take_random_card()
   p g.logs
   p "#{g.state} after: #{pl.money}"
-
-
 end
-#test_random
-
 
 def  test_police_exit
   g = init_game
@@ -71,8 +67,6 @@ def  test_police_exit
   p g.round_message
 
 end
-#test_police_exit
-
 
 def test_build_houses
   g = init_game
@@ -103,24 +97,6 @@ def test_build_houses
   p g.logs
 end
 
-#test_build_houses
-
-=begin
-
---------------------
-sum = 0.7*g.player_assets(0,false)
-BBHouses.build_houses(g,sum)
-g.info
---------------------
-myGroupsWithHouses = BBHouses.get_groups_where_need_build_houses(g,p.id)
-p myGroupsWithHouses.map{ |gh|
-arr = BotActionsWhenBuy.mygroups_with_max_housecount(gh[0], gh[1])
-mf = arr.detect{|f| f[0] > available_money }
-puts "#{mf}"
-mf.nil? ? -1 : mf[1]
-}.min
-=end
-
 def test_trade
   puts "---test trade func"
 
@@ -141,19 +117,12 @@ def test_trade
 
   text = "#{g.curr_trade.from.name} надеется сделать обмен с #{g.curr_trade.to.name}, предлагает #{g.curr_trade.give_cells.map { |c| g.cells[c].name  }}"+
     " мечтает #{g.curr_trade.get_cells.map { |c| g.cells[c].name  }}"
-
   p text
-
-
-  true ? TradeManager.complete_trade(g) : TradeManager.add_to_rejected_trades(g)
-
+  TradeManager.complete_trade(g) 
+  #TradeManager.add_to_rejected_trades(g)
   p g.rejected_trades
-
 end
-#test_trade
 
-#p BotBrainTrade.get_valid_trades(g,p)
-#BotBrainTrade.try_do_trade(g)
 
 def parse_trade_cmd
   g= init_game
@@ -181,4 +150,4 @@ def parse_trade_cmd
 
   p ntr
 end
-#parse_trade_cmd
+

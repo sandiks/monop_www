@@ -47,7 +47,6 @@ class Game
     @round_message = ''
     @ui_show_ok_when_endround = true
     @isconsole = false
-    @player_cell_groups = []
     @player_cell_groups = Array.new(4) { Array.new(11, 0) }
 
   end
@@ -78,7 +77,6 @@ class Game
       need_roll = players.all? { |pl|  pl.hum? ? pl.manual_roll !=0 : true }
     end
     PlayerStep.make_step(self) if need_roll
-
   end
 
   def curr
@@ -95,9 +93,7 @@ class Game
 
     @state = :EndStep
 
-    if curr.hum? && !@ui_show_ok_when_endround
-      finish_round
-    end
+    finish_round if curr.hum? && !@ui_show_ok_when_endround
   end
 
   def finish_round
@@ -140,7 +136,7 @@ class Game
 
   def fix_action(act)
     log act
-    logx act
+    #logx act
   end
 
   def get_text(key)
@@ -174,7 +170,7 @@ class Game
 
   def log(text)
     arr =text.split(' ')
-    arr[0] = get_text(arr[0])
+    arr[0] = get_text(arr[0]) % [curr.name]
     ttext = arr.join(' ')
     logs << "[#{@round}] #{ttext}"
   end
@@ -183,11 +179,6 @@ class Game
     xlogs<<"[#{@round}] #{text}"
   end
 
-  def logp(text)
-    ttext = transl_text(text)
-    ftext = "[#{curr.name}, #{curr.money},#{curr.pos}] #{ttext}"
-    logs << "[#{@round}] #{ftext}"
-  end
 
   def logd(text)
     xlogs "[debug] #{text}" if @debug
@@ -213,6 +204,7 @@ class Game
     end
     sum + find_player(pid).money
   end
+
   def player_trules(pid)
     @bot_trules
 

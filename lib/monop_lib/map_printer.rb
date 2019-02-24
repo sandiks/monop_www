@@ -12,9 +12,11 @@ class MapPrinter
 
   end
 
-  def draw(g)
+  def draw(g, as_text = false)
     clean
-    puts "--map"
+    out=[]
+
+    out<< "--map"
 
     g.players.each do |p|
       r,c = get_cell(p.pos)
@@ -34,19 +36,41 @@ class MapPrinter
       cells << "".ljust(30, '-')
     end
 
+    ## draw cells info
+    for i in 0..@map.size
 
-    last_row = @map.size
-    for i in 0..last_row
-      l = @map[i] if i<last_row
+      l = @map[i] if i<@map.size
       if i<cells.size
-        puts l.gsub("\n","").ljust(60, ' ') + cells[i]
+        out<< l #l.gsub("\n","").ljust(60, ' ') + cells[i]
       else
-        puts l
+        out<< l
       end
     end
 
-
+    out
   end
+
+  def self.draw_telegram_map(g)
+    pos = g.curr.pos
+
+    out=[]
+    part= case pos
+    when 0..5; File.readlines("data/map1.txt")
+    when 6..15; File.readlines("data/map2.txt")
+    when 15..25; File.readlines("data/map3.txt")
+    when 25..35; File.readlines("data/map4.txt")
+    when 36..40; File.readlines("data/map1.txt")
+
+    end
+    pp = "c#{pos}"
+
+    if part 
+      part.join("").sub(pp, "my")
+    else
+      pp
+    end
+  end
+
 
   def clean
     @map = File.readlines("data/map.txt")

@@ -1,7 +1,7 @@
 require_relative  'cell'
 
 class Player
-  attr_accessor :id, :name, :status, :isbot, :deleted, :money
+  attr_accessor :id, :name, :is_ready_game, :isbot, :deleted, :money
   attr_accessor :pos, :last_roll, :manual_roll, :police, :police_key
   attr_accessor :player_steps, :timer
   def initialize(id, name, isbot, money=15000)
@@ -14,6 +14,7 @@ class Player
     @police =0
     @police_key =0
     @manual_roll =0
+    @is_ready_game = (isbot == 1)
   end
 
   def hum?
@@ -46,7 +47,7 @@ class PlayerManager
       if p.police>0
         p.police=0
         g.log "_paid_500_and_go_from_jail"
-        PlayerStep.change_pos_and_process_position(g)
+        PlayerStep.change_pos_and_process_position(g) if p.isbot
         return
       end
 
@@ -92,7 +93,7 @@ class PlayerManager
 
         if needbuy
           g.map.set_owner(p, cell, cell.cost)
-          g.round_message += g.l "<br/>вы купили [#{cell.name}] за $#{cell.cost}","<br/>you purchased [#{cell.name}] for $#{cell.cost}"
+          g.round_message += g.l "<br/>#{@name} купил [#{cell.name}] за $#{cell.cost}","<br/>#{@name} purchased [#{cell.name}] for $#{cell.cost}"
 
           g.finish_step("_bought [#{cell.name}]")
         else
@@ -102,7 +103,7 @@ class PlayerManager
       else
         if p.money < cell.cost
           g.state = :CanBuy
-          g.logp  g.get_text("_not_enough_money")
+          g.log "_not_enough_money"
           return
         else
           g.map.set_owner(p, cell, cell.cost)
