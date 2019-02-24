@@ -1,5 +1,5 @@
 require_relative "test"
-require_relative "map_printer"
+require_relative "../map_printer"
 
 
 #p MapPrinter.draw_telegram_map(1,5)

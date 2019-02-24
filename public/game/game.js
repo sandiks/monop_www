@@ -82,10 +82,10 @@ function chSpeedUpdate() {
     var ch = $('#speedUpd').is(':checked');
     if (ch) {
         clearInterval(updater);
-        updater = setInterval('loadPageData()', 2000);
+        updater = setInterval('loadPageData()', 3000);
     } else {
         clearInterval(updater);
-        updater = setInterval('loadPageData()', 1000);
+        updater = setInterval('loadPageData()', 2000);
     }
 }
 

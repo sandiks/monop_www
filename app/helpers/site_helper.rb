@@ -14,11 +14,10 @@ module LogHelper
     def self.log_req(req)
         #p req.path
         #incld = req.path.include?('/actualfile.aspx') || req.user_agent.include?('X11; Linux x86_64')
-        logs = Monopwww::App.cache['site_logs']
-        logs =[] if logs.nil?
-        logs<< {:path=> req.path, :ip=> req.ip,
-                :referer=> req.referer,  :date => DateTime.now.new_offset(3/24.0), :uagent=> req.user_agent }
-        Monopwww::App.cache['site_logs'] = logs
+
+        rec = {:path=> req.path, :ip=> req.ip, :referer=> req.referer,  :date => DateTime.now.new_offset(3/24.0), :uagent=> req.user_agent }
+        Logs.insert(rec)
+        #Monopwww::App.cache['site_logs']<< rec
     end
 
     def self.date_now_tz3

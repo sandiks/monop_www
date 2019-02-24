@@ -1,3 +1,7 @@
+<div class="error" id="flash">
+  <%= flash[:error] %>
+</div>
+
 <% form_tag  url(:sessions,:login), :method=>:post, :class => 'form-inline well'  do  %>
 <div class="col-md-3">
 	<%= text_field_tag :name,  :class => 'form-control', :placeholder => "Name" %>

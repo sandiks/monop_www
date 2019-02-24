@@ -75,6 +75,6 @@ module Monopwww
 
         layout :layout
 
-        Monopwww::App.cache['site_users'] = Users.get_game_users
+        Monopwww::App.cache['site_users'] = Users.all#Users.get_game_users
     end
 end

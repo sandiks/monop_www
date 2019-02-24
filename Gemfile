@@ -29,6 +29,7 @@ gem 'json'
 gem 'redis'
 gem 'padrino-warden', :github => 'jondot/padrino-warden'
 gem 'logger'
+gem 'nokogiri'
 
 #gem 'i18n'
 # Or Padrino Edge

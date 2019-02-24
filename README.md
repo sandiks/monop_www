@@ -14,12 +14,13 @@ open web browser
 http://localhost:3000/
 
 ## sqlite
-$ sqlite3 ex1
-SQLite version 3.8.5 2014-05-29 12:36:14
+$ sqlite3 monop.db
+
 Enter ".help" for usage hints.
-sqlite> create table users(id int,name varchar(20), email varchar(20));
-sqlite> insert into users values(1,'user1', 'user1@ggmail.com');
-sqlite> insert into users values(2,'user2', 'user2@ggmail.com');
+sqlite> create table users(id INTEGER PRIMARY KEY AUTOINCREMENT ,name varchar(20), email varchar(20), created_at INTEGER);
+sqlite> create table Logs(ip TEXT, path TEXT,uagent TEXT,referer TEXT, date int);
+sqlite> insert into users values('user1', 'user1@ggmail.com', '1551005795');
+sqlite> insert into users values('user2', 'user2@ggmail.com', '1551005795');
 sqlite> select * from users;
 
 sqlite>

@@ -6,6 +6,7 @@ Warden::Strategies.add(:password) do
     def authenticate!
       #user = Users.filter(email: params["email"]).first
       #if !user.nil? && user.password == params["password"].strip
+      
       users = Monopwww::App.cache['site_users']
       user = users.find {|u| u[:name] == params["name"]}
       if !user.nil?
@@ -17,4 +18,4 @@ Warden::Strategies.add(:password) do
 end
 
 Warden::Manager.serialize_into_session { |user| user[:name] }
-Warden::Manager.serialize_from_session { |id| Monopwww::App.cache['site_users'].find {|u| u[:name] == id} }
+Warden::Manager.serialize_from_session { |name| Monopwww::App.cache['site_users'].find {|u| u[:name] == name} }

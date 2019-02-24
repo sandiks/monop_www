@@ -6,7 +6,4 @@
 
 require File.expand_path("../config/boot.rb", __FILE__)
 
-require 'sidekiq/web'
-map('/sidekiq') { run Sidekiq::Web } 
-
 run Padrino.application

@@ -12,8 +12,11 @@ Monopwww::App.controllers :account do
         name =params[:name]
         users = Monopwww::App.cache['site_users'] || []
         if !users.any? {|u| u[:name] == name}
-            users<< {name: name, pass:params[:password], created: DateTime.now.new_offset(3/24.0)}
+            rec = {name: name, email: "#{name}@ggmail.com", pass:params[:password], created_at: Time.now.to_i}
+            users << rec
+            Users.insert(rec) 
             Monopwww::App.cache['site_users'] = users
+            
             flash[:success] = "зарегистрировались успешно, теперь вы можете войти"
             redirect url(:sessions, :login)
         else

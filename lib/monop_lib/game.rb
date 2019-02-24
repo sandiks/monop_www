@@ -38,8 +38,8 @@ class Game
     @debug = false
     @rejected_trades = []
     @completed_trades =[]
-    @logs =[]
-    @xlogs =[]
+    @logs = []
+    @xlogs = []
     @log_to_console = false
     @log_game_rounds = false
     @update_interval = 1
@@ -196,10 +196,10 @@ class Game
     sum=0
     cells.select{|c| c.owner==pid && c.active?}.each do |c|
       if inclMonop
-        sum+=c.mortgage_amount
-        sum+=c.houses_count*c.house_cost_when_sell if c.houses_count>0
+        sum += c.mortgage_amount
+        sum += c.houses_count*c.house_cost_when_sell if c.houses_count>0
       else
-        sum+=c.mortgage_amount if !c.monopoly?
+        sum += c.mortgage_amount unless c.monopoly?
       end
     end
     sum + find_player(pid).money
@@ -228,7 +228,7 @@ class Game
 
 
   def to_pay(amount, finish = true)
-    @pay_amount = amount;
+    @pay_amount = amount
     to_payam()
   end
 

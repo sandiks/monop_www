@@ -33,7 +33,7 @@
 			$(document).ready(function() {
 				//$( document ).tooltip();
 
-				var updater = setInterval('update_page()', 2000);
+				var updater = setInterval('update_page()', 3000);
 
 				$("#dialog").dialog({
 					modal: true,
@@ -140,7 +140,7 @@
 	<br />
 	<input id="btnExchange" type="button" value="<%= t 'make exchange' %>" />
 	
-	<%= partial 'shared/map', :object => @game %>
+	<%= partial 'shared/map', object: @game %>
 
 	</body>
 </html>

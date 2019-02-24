@@ -38,7 +38,7 @@ Monopwww::App.controllers :admin do
     redirect url(:site, :games)
   end
   get :logs do
-    @logs = Monopwww::App.cache['site_logs']
+    @logs = Monopwww::App.cache['site_logs'] || []
     render 'logs'
   end
   get :clear_logs do

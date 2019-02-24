@@ -1,6 +1,6 @@
-require_relative "utils"
-require_relative "game"
-require_relative "game_control"
+require_relative "../utils"
+require_relative "../game"
+require_relative "../game_control"
 
 
 def init_game
